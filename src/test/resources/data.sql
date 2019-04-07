@@ -1,0 +1,42 @@
+-- 插入部门信息测试数据
+insert into t_dept (id, name) values (1, '部门1');
+insert into t_dept (id, name) values (2, '部门2');
+insert into t_dept (id, name) values (3, '部门3');
+insert into t_dept (id, name) values (4, '部门4');
+insert into t_dept (id, name) values (5, '部门5');
+insert into t_dept (id, name) values (6, '部门6');
+insert into t_dept (id, name) values (7, '部门7');
+insert into t_dept (id, name) values (8, '部门8');
+insert into t_dept (id, name) values (9, '部门9');
+insert into t_dept (id, name) values (10, '部门10');
+insert into t_dept (id, name) values (11, '部门11');
+insert into t_dept (id, name) values (12, '部门12');
+insert into t_dept (id, name) values (13, '部门13');
+insert into t_dept (id, name) values (14, '部门14');
+insert into t_dept (id, name) values (15, '部门15');
+insert into t_dept (id, name) values (16, '部门16');
+insert into t_dept (id, name) values (17, '部门17');
+insert into t_dept (id, name) values (18, '部门18');
+insert into t_dept (id, name) values (19, '部门19');
+insert into t_dept (id, name) values (20, '部门20');
+
+-- 插入员工测试数据
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (1, '2016-01-01', 1, '141000199001011001', '192.168.1.1', '2017-02-16 17:01:36.000000000', '员工1', '13579246811', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (2, '2016-01-02', -1, '141000199001011002', '192.168.1.2', '2017-02-16 17:02:36.000000000', '员工2', '13579246812', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (3, '2016-01-03', 1, '141000199001011003', '192.168.1.3', '2017-02-16 17:03:36.000000000', '员工3', '13579246813', 1, '2016-10-20', 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (4, '2016-01-04', 0, '141000199001011004', '192.168.1.4', '2017-02-16 17:04:36.000000000', '员工4', '13579246814', 2, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (5, '2016-01-05', 1, '141000199001011005', '192.168.1.5', '2017-02-16 17:05:36.000000000', '员工5', '13579246815', 1, '2016-01-14', 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (6, '2016-01-06', 0, '141000199001011006', '192.168.1.6', '2017-02-16 17:06:36.000000000', '员工6', '13579246816', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (7, '2016-01-07', 1, '141000199001011007', '192.168.1.7', '2017-02-16 17:07:36.000000000', '员工7', '13579246817', 3, '2016-03-24', 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (8, '2016-01-08', 0, '141000199001011008', '192.168.1.8', '2017-02-16 17:08:36.000000000', '员工8', '13579246818', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (9, '2016-01-09', 1, '141000199001011009', '192.168.1.9', '2017-02-16 17:09:36.000000000', '员工9', '13579246819', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (10, '2016-01-10', 0, '141000199001011010', '192.168.1.10', '2017-02-16 17:10:36.000000000', '员工10', '13579246820', 1, '2016-01-25', 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (11, '2016-01-11', 1, '141000199001011011', '192.168.1.11', '2017-02-16 17:11:36.000000000', '员工11', '13579246821', 3, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (12, '2016-01-12', 0, '141000199001011012', '192.168.1.12', '2017-02-16 17:12:36.000000000', '员工12', '13579246822', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (13, '2016-01-13', 1, '141000199001011013', '192.168.1.13', '2017-02-16 17:13:36.000000000', '员工13', '13579246823', 1, '2016-01-05', 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (14, '2016-01-14', -1, '141000199001011014', '192.168.1.14', '2017-02-16 17:14:36.000000000', '员工14', '13579246824', 2, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (15, '2016-01-15', 1, '141000199001011015', '192.168.1.15', '2017-02-16 17:15:36.000000000', '员工15', '13579246825', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (16, '2016-01-16', 0, '141000199001011016', '192.168.1.16', '2017-02-16 17:16:36.000000000', '员工16', '13579246826', 3, '2016-04-05', 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (17, '2016-01-17', -1, '141000199001011017', '192.168.1.17', '2017-02-16 17:17:36.000000000', '员工17', '13579246827', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (18, '2016-01-18', 1, '141000199001011018', '192.168.1.18', '2017-02-16 17:18:36.000000000', '员工18', '13579246828', 1, null, 1);
+insert into public.t_employee (id, entry_date, gender, id_card, last_login_ip, last_login_time, name, phone, status, turnover_date, dept_id) values (19, '2016-01-19', 0, '141000199001011019', '192.168.1.19', '2017-02-16 17:19:36.000000000', '员工19', '13579246829', 1, '2016-07-21', 1);

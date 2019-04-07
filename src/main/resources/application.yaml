@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: spring-data-jpa-demo
+  data:
+    rest:
+      ## 创建资源后，响应体中包含资源本身。默认不包含，只有响应头。
+      return-body-on-create: true
+      ## 修改资源后，响应体中包含资源本身。默认不包含，只有响应头。
+      return-body-on-update: true
+    jpa:
+      repositories:
+        ## 数据源懒加载
+        bootstrap-mode: deferred
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+  jackson:
+    locale: zh_CN
+    time-zone: "GMT+8"
+    default-property-inclusion: always
+  jpa:
+    ## 控制台打印 SQL 语句
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        ## 格式化输出 SQL
+        format_sql: true
+        ## 打印 SQL 注释，默认关闭，开启后方便定位问题。日志打印内容增多，所以不开启。
+        use_sql_comments: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  info:
+    git:
+      mode: full
+info:
+  name: ${spring.application.name}
+  title: Spring Data JPA Demo
+  manual: https://github.com/keveon/spring-data-jpa-demo
+  description: 一文带你领略 Spring 全家桶带来的极速开发体验。
+  tags:
+    environment: produce
+  contact:
+    name: keveon
+    url: https://keveon.me
+    email: keveon@keveon.com
+logging:
+  file: ${java.io.tmpdir}/logs/${spring.application.name}.log
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace

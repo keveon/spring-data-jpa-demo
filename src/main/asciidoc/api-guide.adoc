@@ -1,0 +1,197 @@
+= RESTful API Guide
+Keveon<keveon@keveon.com>;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-path-parameters-title: Path parameters
+:operation-request-parameters-title: Request parameters
+:operation-request-fields-title: Request fields
+:operation-response-fields-title: Response fields
+:operation-curl-request-title: Request example
+:operation-http-response-title: Response example
+
+[[overview-http-verbs]]
+== HTTP verbs
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods[Read More]
+
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `POST`
+| Used to create a new resource
+
+| `PUT`
+| Used to replace an existing resource.
+
+| `PATCH`
+| Used to update an existing resource, including partial updates
+
+| `DELETE`
+| Used to delete an existing resource
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP status codes. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status[Read More]
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully. The resource's URI is available from the response's
+`Location` header
+
+| `204 No Content`
+| An update to an existing resource has been applied successfully
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+| `404 Not Found`
+| The requested resource did not exist
+|===
+
+[[overview-errors]]
+== Errors
+
+Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
+that describes the problem. The error object has the following structure:
+
+include::{snippets}/error/response-fields.adoc[]
+
+For example, a request that attempts to apply a non-existent tag to a note will produce a
+`400 Bad Request` response:
+
+include::{snippets}/error/http-response.adoc[]
+
+[[overview-hypermedia]]
+== Hypermedia
+
+RESTful Notes uses hypermedia and resources include links to other resources in their
+responses. Responses are in http://stateless.co/hal_specification.html[Hypertext Application
+from resource to resource.
+Language (HAL)] format. Links can be found beneath the `_links` key. Users of the API should
+not create URIs themselves, instead they should use the above-described links to navigate
+
+[[resources]]
+= Resources
+
+
+
+[[resources-index]]
+== Index
+
+The index provides the entry point into the service.
+
+
+
+[[resources-index-access]]
+=== Accessing the index
+
+A `GET` request is used to access the index
+
+operation::index[snippets='response-fields,http-response,links']
+
+
+
+[[resources-page]]
+== Page
+
+`Page` 资源用于描述分页信息。
+
+|===
+|Path|Description
+
+|`+size+`
+|每页显示数量
+
+|`+totalElements+`
+|总条数
+
+|`+totalPages+`
+|总页数
+
+|`+number+`
+|当前所在页
+
+|===
+
+
+[[resources-depts]]
+== 部门（Depts）
+
+`Depts` 资源用于创建、删除、修改部门资源, 以及列出部门资源列表、查询单个部门资源的信息和使用特定条件搜索部门信息。
+
+
+
+[[resources-depts-create]]
+=== 创建部门
+
+`POST` 请求将用于创建一个部门记录。
+
+operation::depts-create[snippets='request-fields,curl-request,http-response']
+
+
+
+[[resources-depts-delete]]
+=== 删除一个部门信息
+
+`DELETE` 请求用于删除一个部门资源。
+
+operation::depts-delete[snippets='path-parameters,curl-request,http-response']
+
+
+
+[[resources-depts-update]]
+=== 修改部门信息
+
+`PATCH` 请求用于更新部门资源的一个或多个属性。
+
+==== {operation-path-parameters-title}
+
+include::{snippets}/depts-update/path-parameters.adoc[]
+
+==== {operation-request-fields-title}
+
+要保持部门资源的属性不变，可以从请求中体中省略 `{operation-request-fields-title}` 中任何一个。
+
+include::{snippets}/depts-update/request-fields.adoc[]
+
+==== {operation-curl-request-title}
+
+include::{snippets}/depts-update/curl-request.adoc[]
+
+==== {operation-http-response-title}
+
+include::{snippets}/depts-update/http-response.adoc[]
+
+
+
+[[resources-depts-retrieve]]
+=== 通过部门编号, 检索单个部门的完整信息
+
+`GET` 请求将检索并返回完整的部门资源的详细信息。
+
+operation::depts-retrieve[snippets='path-parameters,response-fields,links,curl-request,http-response']
+
+
+
+[[resources-depts-list]]
+=== 部门列表
+
+`GET` 请求将用于列出所有部门。
+
+operation::depts-list[snippets='request-parameters,response-fields,links,curl-request,http-response']
