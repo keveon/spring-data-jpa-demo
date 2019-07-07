@@ -1,6 +1,6 @@
 # Spring Data Jpa 常用功能演示
 
-配套说明请查看：[万字长文带你领略 Spring 全家桶带来的极速开发体验](https://keveon.me/spring/spring-data-jpa-1.html)
+配套说明请查看：[万字长文带你领略 Spring 全家桶带来的极速开发体验](https://keveon.me/spring/spring-family-bucket-1.html)
 
 ## 项目简介
 
@@ -26,7 +26,7 @@
 
 - 同时邀请您一起参与完善该教程, 帮助更多的人, 欢迎反馈错误和意见!
 
-- 如果你想参与完善该教程, 请移步到 Github 上进行 Fork：[https://github.com/keveoneveon/spring-data-jpa-demo](https://github.com/keveon/spring-data-jpa-demo)
+- 如果你想参与完善该教程, 请移步到 Github 上进行 Fork：[https://github.com/keveon/spring-data-jpa-demo](https://github.com/keveon/spring-data-jpa-demo)
 
 ## 框架介绍
 
