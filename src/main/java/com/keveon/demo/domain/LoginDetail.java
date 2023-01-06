@@ -1,10 +1,10 @@
 package com.keveon.demo.domain;
 
+import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Embeddable;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 /**

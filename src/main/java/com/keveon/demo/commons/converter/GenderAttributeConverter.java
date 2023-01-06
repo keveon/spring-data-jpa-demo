@@ -2,10 +2,10 @@ package com.keveon.demo.commons.converter;
 
 import com.keveon.demo.commons.consts.Gender;
 import com.keveon.demo.commons.consts.WorkingStatus;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.util.Objects;
 
 /**

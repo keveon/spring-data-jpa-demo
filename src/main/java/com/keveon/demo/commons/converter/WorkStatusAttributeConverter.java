@@ -1,11 +1,10 @@
 package com.keveon.demo.commons.converter;
 
 import com.keveon.demo.commons.consts.WorkingStatus;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.util.ObjectUtils;
-
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 
 /**
  * {@link WorkingStatus} 与数据库中的 {@link Integer} 互相转换的映射类, 扩展自 {@link AttributeConverter}.

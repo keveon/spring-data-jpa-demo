@@ -4,7 +4,7 @@
 
 ## 项目简介
 
-- 本项目采用 [SpringBoot](http://projects.spring.io/spring-boot/) 当前最新的 `2.1.4.RELEASE` 做基础架构支撑, 参考本项目建议有一定的 [SpringBoot](http://projects.spring.io/spring-boot/) 基础及经验.
+- 本项目采用 [SpringBoot](http://projects.spring.io/spring-boot/) 当前最新的 `3.0.1` 做基础架构支撑, 参考本项目建议有一定的 [SpringBoot](http://projects.spring.io/spring-boot/) 基础及经验.
 
 - 教程主要面向中文用户, 如果你英文良好, 建议直接阅读官网帮助文档.
 
@@ -122,4 +122,4 @@ dependencies {
 ## 联系方式
 
 - Github: <https://github.com/keveon>
-- Email：<keveon@keveon.com>
+- Email：[keveon@keveon.com](mailto:keveon@keveon.com)

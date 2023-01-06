@@ -1,8 +1,7 @@
 package com.keveon.demo;
 
+import jakarta.servlet.RequestDispatcher;
 import org.junit.jupiter.api.Test;
-
-import javax.servlet.RequestDispatcher;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -29,12 +28,11 @@ class IndexTests extends SpringDataJpaDemoApplicationTests {
      */
     @Test
     void error() throws Exception {
-        this.mockMvc
-                .perform(get("/error")
+        this.mockMvc.perform(get("/error")
                         .requestAttr(RequestDispatcher.ERROR_STATUS_CODE, 400)
                         .requestAttr(RequestDispatcher.ERROR_REQUEST_URI, "/depts")
-                        .requestAttr(RequestDispatcher.ERROR_MESSAGE,
-                                "The tag 'http://localhost:8080/depts/-1' does not exist"))
+                        .requestAttr(RequestDispatcher.ERROR_MESSAGE, "The tag 'http://localhost:8080/depts/-1' does not exist")
+                )
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("error", is("Bad Request")))
                 .andExpect(jsonPath("timestamp", is(notNullValue())))

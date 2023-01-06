@@ -54,8 +54,7 @@ class DeptRepositoryTest extends SpringDataJpaDemoApplicationTests {
         JSONObject params = new JSONObject();
         params.put("name", "This is a test dept.");
 
-        this.mockMvc.perform(
-                post(basePath + "/" + RESOURCE_NAME)
+        this.mockMvc.perform(post(basePath + "/" + RESOURCE_NAME)
                         .contentType(MediaTypes.HAL_JSON)
                         .content(params.toJSONString()))
                 .andExpect(status().isCreated())
@@ -77,8 +76,9 @@ class DeptRepositoryTest extends SpringDataJpaDemoApplicationTests {
      */
     @Test
     void deleteById() throws Exception {
-        this.mockMvc.perform(
-                delete(basePath + "/" + RESOURCE_NAME + "/{id}", id).contentType(MediaTypes.HAL_JSON))
+        this.mockMvc.perform(delete(basePath + "/" + RESOURCE_NAME + "/{id}", id)
+                        .contentType(MediaTypes.HAL_JSON)
+                )
                 .andExpect(status().isNoContent())
                 .andDo(document(RESOURCE_NAME + "-delete",
                         pathParameters(
@@ -98,10 +98,10 @@ class DeptRepositoryTest extends SpringDataJpaDemoApplicationTests {
         JSONObject param = new JSONObject();
         param.put("name", "This is renamed dept.");
 
-        this.mockMvc.perform(
-                patch(basePath + "/" + RESOURCE_NAME + "/{id}", id)
+        this.mockMvc.perform(patch(basePath + "/" + RESOURCE_NAME + "/{id}", id)
                         .contentType(MediaTypes.HAL_JSON)
-                        .content(param.toJSONString()))
+                        .content(param.toJSONString())
+                )
                 .andExpect(status().isOk())
                 .andDo(document(RESOURCE_NAME + "-update",
                         selfLinksSnippet,
@@ -120,7 +120,7 @@ class DeptRepositoryTest extends SpringDataJpaDemoApplicationTests {
      *
      * @throws Exception the exception
      * @see DeptRepository#findById(Object)
-     * @see DeptRepository#getOne(Object)
+     * @see DeptRepository#getReferenceById(Object)
      */
     @Test
     void retrieve() throws Exception {
@@ -143,24 +143,24 @@ class DeptRepositoryTest extends SpringDataJpaDemoApplicationTests {
      */
     @Test
     void list() throws Exception {
-        this.mockMvc.perform(
-                get(basePath + "/" + RESOURCE_NAME)
+        this.mockMvc.perform(get(basePath + "/" + RESOURCE_NAME)
                         .param("page", "1")
-                        .param("size", "5"))
+                        .param("size", "5")
+                )
                 .andExpect(status().isOk())
                 .andDo(document(RESOURCE_NAME + "-list",
-                        links(
-                                linkWithRel("self").ignored(),
-                                linkWithRel("profile").description("The ALPS profile for this resource")
-                        ).and(pagingLinks),
-                        requestParameters(
+                                links(
+                                        linkWithRel("self").ignored(),
+                                        linkWithRel("profile").description("The ALPS profile for this resource")
+                                ).and(pagingLinks),
+                                queryParameters(
 
-                        ).and(pageRequestParameters),
-                        responseFields(
-                                subsectionWithPath("_embedded." + RESOURCE_NAME)
-                                        .description("部门资源的列表, 详情查看《<<resources-" + RESOURCE_NAME + "-retrieve, 通过部门编号, 检索单个部门的完整信息>>》"),
-                                subsectionWithPath("_links").description("<<resources-" + RESOURCE_NAME + "-list_links, Links>> to other resources"),
-                                subsectionWithPath("page").description("<<resources-page, Page>> to other resources"))
+                                ).and(pageRequestParameters),
+                                responseFields(
+                                        subsectionWithPath("_embedded." + RESOURCE_NAME).description("部门资源的列表, 详情查看《<<resources-" + RESOURCE_NAME + "-retrieve, 通过部门编号, 检索单个部门的完整信息>>》"),
+                                        subsectionWithPath("_links").description("<<resources-" + RESOURCE_NAME + "-list_links, Links>> to other resources"),
+                                        subsectionWithPath("page").description("<<resources-page, Page>> to other resources")
+                                )
                         )
                 );
     }

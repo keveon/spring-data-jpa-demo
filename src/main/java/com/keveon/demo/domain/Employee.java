@@ -2,12 +2,12 @@ package com.keveon.demo.domain;
 
 import com.keveon.demo.commons.consts.Gender;
 import com.keveon.demo.commons.consts.WorkingStatus;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**

@@ -1,5 +1,5 @@
 = RESTful API Guide
-Keveon<keveon@keveon.com>;
+Keveon Wang <keveon@keveon.com>;
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -16,8 +16,7 @@ Keveon<keveon@keveon.com>;
 [[overview-http-verbs]]
 == HTTP verbs
 
-RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
-use of HTTP verbs. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods[Read More]
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its use of HTTP verbs. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods[Read More]
 
 |===
 | Verb | Usage
@@ -41,8 +40,7 @@ use of HTTP verbs. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods[Rea
 [[overview-http-status-codes]]
 == HTTP status codes
 
-RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
-use of HTTP status codes. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status[Read More]
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its use of HTTP status codes. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status[Read More]
 
 |===
 | Status code | Usage
@@ -67,8 +65,8 @@ use of HTTP status codes. https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Stat
 [[overview-errors]]
 == Errors
 
-Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
-that describes the problem. The error object has the following structure:
+Whenever an error response (status code >= 400) is returned, the body will contain a JSON object that describes the problem.
+The error object has the following structure:
 
 include::{snippets}/error/response-fields.adoc[]
 
@@ -80,23 +78,20 @@ include::{snippets}/error/http-response.adoc[]
 [[overview-hypermedia]]
 == Hypermedia
 
-RESTful Notes uses hypermedia and resources include links to other resources in their
-responses. Responses are in http://stateless.co/hal_specification.html[Hypertext Application
+RESTful Notes uses hypermedia and resources include links to other resources in their responses.
+Responses are in http://stateless.co/hal_specification.html[Hypertext Application
 from resource to resource.
-Language (HAL)] format. Links can be found beneath the `_links` key. Users of the API should
-not create URIs themselves, instead they should use the above-described links to navigate
+Language (HAL)] format.
+Links can be found beneath the `_links` key.
+Users of the API should not create URIs themselves, instead they should use the above-described links to navigate
 
 [[resources]]
 = Resources
-
-
 
 [[resources-index]]
 == Index
 
 The index provides the entry point into the service.
-
-
 
 [[resources-index-access]]
 === Accessing the index
@@ -104,8 +99,6 @@ The index provides the entry point into the service.
 A `GET` request is used to access the index
 
 operation::index[snippets='response-fields,http-response,links']
-
-
 
 [[resources-page]]
 == Page
@@ -129,13 +122,10 @@ operation::index[snippets='response-fields,http-response,links']
 
 |===
 
-
 [[resources-depts]]
 == 部门（Depts）
 
 `Depts` 资源用于创建、删除、修改部门资源, 以及列出部门资源列表、查询单个部门资源的信息和使用特定条件搜索部门信息。
-
-
 
 [[resources-depts-create]]
 === 创建部门
@@ -144,16 +134,12 @@ operation::index[snippets='response-fields,http-response,links']
 
 operation::depts-create[snippets='request-fields,curl-request,http-response']
 
-
-
 [[resources-depts-delete]]
 === 删除一个部门信息
 
 `DELETE` 请求用于删除一个部门资源。
 
 operation::depts-delete[snippets='path-parameters,curl-request,http-response']
-
-
 
 [[resources-depts-update]]
 === 修改部门信息
@@ -178,8 +164,6 @@ include::{snippets}/depts-update/curl-request.adoc[]
 
 include::{snippets}/depts-update/http-response.adoc[]
 
-
-
 [[resources-depts-retrieve]]
 === 通过部门编号, 检索单个部门的完整信息
 
@@ -187,11 +171,9 @@ include::{snippets}/depts-update/http-response.adoc[]
 
 operation::depts-retrieve[snippets='path-parameters,response-fields,links,curl-request,http-response']
 
-
-
 [[resources-depts-list]]
 === 部门列表
 
 `GET` 请求将用于列出所有部门。
 
-operation::depts-list[snippets='request-parameters,response-fields,links,curl-request,http-response']
+operation::depts-list[snippets='query-parameters,response-fields,links,curl-request,http-response']

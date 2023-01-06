@@ -1,13 +1,13 @@
 package com.keveon.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.List;
 
 /**
