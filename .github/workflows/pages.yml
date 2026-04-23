@@ -39,7 +39,6 @@ jobs:
           rm -rf site
           mkdir -p site
           cp -R target/generated-docs/. site/
-          cp target/generated-docs/api-guide.html site/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

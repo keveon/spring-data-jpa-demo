@@ -1,8 +1,6 @@
 package com.keveon.demo.commons.consts;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,9 +11,7 @@ import org.jetbrains.annotations.NotNull;
  * @version 1.0.0
  * @since 1.0.0
  */
-@Getter
 @ToString
-@RequiredArgsConstructor
 public enum Gender {
     /**
      * 未知
@@ -32,6 +28,14 @@ public enum Gender {
     male(1);
 
     private final Integer code;
+
+    Gender(Integer code) {
+        this.code = code;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
 
     /**
      * Of gender.
