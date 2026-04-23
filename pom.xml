@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.12</version>
+        <version>3.5.13</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.keveon</groupId>
@@ -36,7 +36,7 @@
     <properties>
         <java.version>21</java.version>
 
-        <jib-maven-plugin.version>3.2.0</jib-maven-plugin.version>
+        <jib-maven-plugin.version>3.4.6</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
