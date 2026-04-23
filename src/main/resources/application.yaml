@@ -1,6 +1,11 @@
 spring:
   application:
     name: spring-data-jpa-demo
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
   data:
     rest:
       return-body-on-create: true
