@@ -1,5 +1,4 @@
 = RESTful API Guide
-Keveon Wang <keveon@keveon.com>;
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -12,6 +11,57 @@ Keveon Wang <keveon@keveon.com>;
 :operation-response-fields-title: Response fields
 :operation-curl-request-title: Request example
 :operation-http-response-title: Response example
+
+include::_shared-theme.adoc[]
+
+++++
+<div class="site-shell docs-shell">
+  <section class="doc-hero">
+    <nav class="site-nav">
+      <a href="./index.html">返回首页</a>
+      <a href="https://github.com/keveon/spring-data-jpa-demo">GitHub 仓库</a>
+      <a href="#toc">目录导航</a>
+    </nav>
+    <div class="doc-hero-grid">
+      <div>
+        <span class="guide-pill">API Guide</span>
+        <h2>统一风格的 REST 文档入口，既保留 REST Docs 生成内容，也提升目录、表格与代码块的可读性。</h2>
+        <p>
+          本页围绕资源结构、请求示例、响应内容与常见约定组织阅读路径。
+          生成内容仍然来自测试与 snippets，当前优化主要聚焦在信息层级、视觉统一与浏览体验。
+        </p>
+        <div class="doc-actions">
+          <a class="btn-primary" href="#resources">查看资源目录</a>
+          <a class="btn-secondary" href="./index.html">回到项目首页</a>
+        </div>
+      </div>
+      <aside class="panel-card guide-meta">
+        <h3>阅读建议</h3>
+        <div class="meta-line">
+          <span>先看目录，再按资源跳读</span>
+          <span>请求/响应示例保持原始生成内容</span>
+          <span>表格与标题层级已统一样式</span>
+        </div>
+        <p>如果你想快速上手，优先看 Index、Page 与 Depts 资源章节，再对照仓库测试用例理解文档来源。</p>
+      </aside>
+    </div>
+    <div class="guide-highlights">
+      <article class="guide-highlight">
+        <h3>目录更易扫读</h3>
+        <p>左侧 TOC 采用胶囊式高亮与更清晰的缩进层级，适合长文档快速定位。</p>
+      </article>
+      <article class="guide-highlight">
+        <h3>表格与代码块更现代</h3>
+        <p>参数表、字段表与请求示例统一为深色卡片容器，便于长时间阅读。</p>
+      </article>
+      <article class="guide-highlight">
+        <h3>不改坏生成链路</h3>
+        <p>REST Docs 的 operation/include 内容保持原有插入方式，仅通过结构与 CSS 做增强。</p>
+      </article>
+    </div>
+  </section>
+</div>
+++++
 
 [[overview-http-verbs]]
 == HTTP verbs
