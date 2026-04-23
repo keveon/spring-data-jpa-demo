@@ -2,9 +2,23 @@
 
 配套说明请查看：[万字长文带你领略 Spring 全家桶带来的极速开发体验](https://keveon.me/spring/spring-family-bucket-1.html)
 
+## 维护状态
+
+- 当前维护基线：Spring Boot `3.5.13`、Java `21`、Maven Wrapper `3.9.9`。
+- 本地建议使用 [`mise`](https://mise.jdx.dev/) 管理 Java 版本，仓库已提供 `mise.toml`。
+- API 文档会由 GitHub Actions 构建，并发布到 GitHub Pages：<https://keveon.github.io/spring-data-jpa-demo/>。
+
+### 本地启动
+
+```bash
+mise install
+./mvnw test
+./mvnw spring-boot:run
+```
+
 ## 项目简介
 
-- 本项目采用 [SpringBoot](http://projects.spring.io/spring-boot/) 当前最新的 `3.0.1` 做基础架构支撑, 参考本项目建议有一定的 [SpringBoot](http://projects.spring.io/spring-boot/) 基础及经验.
+- 本项目采用 [SpringBoot](http://projects.spring.io/spring-boot/) `3.5.13` 做基础架构支撑, 参考本项目建议有一定的 [SpringBoot](http://projects.spring.io/spring-boot/) 基础及经验.
 
 - 教程主要面向中文用户, 如果你英文良好, 建议直接阅读官网帮助文档.
 
