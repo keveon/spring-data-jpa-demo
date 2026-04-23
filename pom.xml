@@ -204,7 +204,7 @@
                 <version>${jib-maven-plugin.version}</version>
                 <configuration>
                     <from>
-                        <image>openjdk:17-slim</image>
+                        <image>eclipse-temurin:21-jre</image>
                     </from>
                     <to>
                         <image>keveon/${project.artifactId}</image>
