@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup mise
+        uses: jdx/mise-action@v2
+
+      - name: Verify toolchain
+        run: |
+          java -version
+          ./mvnw -version
+
+      - name: Run tests
+        run: ./mvnw -q test
+
+      - name: Build package
+        run: ./mvnw -q package -DskipTests
