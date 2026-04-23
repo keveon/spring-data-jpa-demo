@@ -1,5 +1,4 @@
 = Spring Data JPA Demo
-Keveon Wang <keveon@keveon.com>
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -8,537 +7,187 @@ Keveon Wang <keveon@keveon.com>
 :description: 一个面向中文开发者的 Spring Data JPA / Spring Data REST 教学与演示项目。
 :keywords: spring boot, spring data jpa, spring data rest, rest docs, h2, demo
 
+include::_shared-theme.adoc[]
+
 ++++
-<style>
-  :root {
-    color-scheme: light dark;
-    --bg: #0b1020;
-    --bg-soft: #121a31;
-    --card: rgba(18, 26, 49, 0.78);
-    --card-border: rgba(148, 163, 184, 0.2);
-    --text: #e5eefc;
-    --muted: #a6b4d0;
-    --accent: #7dd3fc;
-    --accent-strong: #38bdf8;
-    --success: #86efac;
-    --shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
-    --radius: 24px;
-    --maxw: 1120px;
-  }
-
-  body {
-    margin: 0;
-    font-family: "Inter", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 28%),
-      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.22), transparent 24%),
-      linear-gradient(180deg, #0b1020 0%, #0d1328 52%, #0b1020 100%);
-    color: var(--text);
-  }
-
-  #header, #content, #footer {
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  #header {
-    padding-top: 28px;
-  }
-
-  #header h1 {
-    display: none;
-  }
-
-  #footer {
-    color: var(--muted);
-    padding-bottom: 48px;
-  }
-
-  #content {
-    padding-bottom: 72px;
-  }
-
-  .landing {
-    display: grid;
-    gap: 28px;
-  }
-
-  .hero {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--card-border);
-    border-radius: 32px;
-    background: linear-gradient(135deg, rgba(14, 21, 42, 0.98), rgba(23, 37, 84, 0.88));
-    box-shadow: var(--shadow);
-    padding: 32px;
-  }
-
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: auto -120px -120px auto;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.35), transparent 65%);
-    pointer-events: none;
-  }
-
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.95fr);
-    gap: 28px;
-    align-items: center;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 999px;
-    background: rgba(125, 211, 252, 0.12);
-    border: 1px solid rgba(125, 211, 252, 0.2);
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .02em;
-  }
-
-  .hero h2 {
-    margin: 18px 0 14px;
-    font-size: clamp(36px, 6vw, 56px);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-
-  .hero p {
-    color: var(--muted);
-    font-size: 18px;
-    line-height: 1.75;
-    margin: 0;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 24px;
-  }
-
-  .hero-actions a,
-  .resource-card a,
-  .top-nav a,
-  .cta-card a {
-    text-decoration: none;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 14px;
-    padding: 14px 18px;
-    font-weight: 700;
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-    color: #082f49;
-    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.28);
-  }
-
-  .btn-secondary {
-    color: var(--text);
-    border: 1px solid rgba(148, 163, 184, 0.28);
-    background: rgba(15, 23, 42, 0.36);
-  }
-
-  .btn-primary:hover,
-  .btn-secondary:hover,
-  .resource-card:hover,
-  .feature-card:hover,
-  .metric-card:hover,
-  .cta-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .hero-panel,
-  .feature-card,
-  .resource-card,
-  .metric-card,
-  .cta-card {
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    background: var(--card);
-    backdrop-filter: blur(14px);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-panel {
-    padding: 22px;
-  }
-
-  .hero-panel h3,
-  .section-title,
-  .resource-card h3,
-  .cta-card h3 {
-    margin-top: 0;
-  }
-
-  .hero-panel ul,
-  .check-list,
-  .quickstart ol {
-    margin: 0;
-    padding-left: 20px;
-  }
-
-  .hero-panel li,
-  .check-list li,
-  .quickstart li {
-    margin: 10px 0;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .metrics,
-  .features,
-  .resources,
-  .cta-grid {
-    display: grid;
-    gap: 18px;
-  }
-
-  .metrics {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .metric-card {
-    padding: 22px;
-  }
-
-  .metric-value {
-    display: block;
-    font-size: 30px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    color: var(--success);
-  }
-
-  .metric-label {
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .section {
-    padding-top: 10px;
-  }
-
-  .section-title {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-
-  .section-intro {
-    color: var(--muted);
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 1.8;
-  }
-
-  .features,
-  .resources,
-  .cta-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 18px;
-  }
-
-  .feature-card,
-  .resource-card,
-  .cta-card {
-    padding: 22px;
-  }
-
-  .feature-card h3,
-  .resource-card h3,
-  .cta-card h3 {
-    margin-bottom: 10px;
-    font-size: 20px;
-  }
-
-  .feature-card p,
-  .resource-card p,
-  .cta-card p,
-  .quickstart p {
-    color: var(--muted);
-    line-height: 1.75;
-    margin: 0;
-  }
-
-  .resource-card small {
-    display: inline-block;
-    margin-bottom: 12px;
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: .03em;
-  }
-
-  .resource-card a {
-    color: var(--text);
-  }
-
-  .resource-link {
-    margin-top: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--accent);
-    font-weight: 700;
-  }
-
-  .quickstart {
-    padding: 26px;
-    margin-top: 18px;
-  }
-
-  .quickstart code,
-  .terminal-block code {
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    color: #c4f1ff;
-    border-radius: 12px;
-    display: block;
-    padding: 16px 18px;
-    margin-top: 16px;
-    white-space: pre-wrap;
-    font-family: "SFMono-Regular", "JetBrains Mono", "Cascadia Code", monospace;
-    font-size: 14px;
-    line-height: 1.7;
-    overflow-x: auto;
-  }
-
-  .top-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .top-nav a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    color: var(--muted);
-    background: rgba(15, 23, 42, 0.34);
-    font-weight: 600;
-  }
-
-  .badge-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-  }
-
-  .badge-row img {
-    height: 28px;
-    border-radius: 999px;
-  }
-
-  @media (max-width: 960px) {
-    .hero-grid,
-    .metrics,
-    .features,
-    .resources,
-    .cta-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media (max-width: 720px) {
-    #header, #content, #footer {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-
-    .hero {
-      padding: 22px;
-      border-radius: 24px;
-    }
-
-    .hero-grid,
-    .metrics,
-    .features,
-    .resources,
-    .cta-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero p {
-      font-size: 16px;
-    }
-  }
-</style>
-
-<div class="landing">
+<div class="site-shell landing">
   <section class="hero">
-    <nav class="top-nav">
-      <a href="./api-guide.html">API 文档</a>
-      <a href="https://github.com/keveon/spring-data-jpa-demo">GitHub 仓库</a>
-      <a href="https://keveon.me/spring/spring-family-bucket-1.html">配套文章</a>
+    <nav class="site-nav">
+      <a href="./api-guide.html">API Guide</a>
+      <a href="https://github.com/keveon/spring-data-jpa-demo">项目仓库</a>
+      <a href="#quickstart">快速开始</a>
     </nav>
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Spring Boot 3.5 · Java 21 · GitHub Pages</span>
-        <h2>把 Spring Data JPA 的常见能力，做成一个可运行、可阅读、可扩展的中文示例项目。</h2>
-        <p>
-          这是一个面向中文开发者的 Spring Data JPA / Spring Data REST 教学仓库：
-          你既可以把它当作入门样板，也可以把它当作查询、分页、REST Docs、HATEOAS、Flyway、JaCoCo 等能力的速查项目。
-        </p>
+        <span class="eyebrow">Spring Boot 3.5 · Java 21 · REST Docs</span>
+        <h2>一个能直接跑起来的 Spring Data JPA 示例</h2>
+        <p>从 API 文档、测试到源码结构，都能在这里快速对上。先看接口，再按需深入实现。</p>
         <div class="hero-actions">
-          <a class="btn-primary" href="./api-guide.html">查看 API 文档</a>
-          <a class="btn-secondary" href="https://github.com/keveon/spring-data-jpa-demo">打开源码仓库</a>
+          <a class="btn-primary" href="./api-guide.html">查看 API Guide</a>
+          <a class="btn-secondary" href="https://github.com/keveon/spring-data-jpa-demo">浏览项目仓库</a>
         </div>
-        <div class="badge-row">
-          <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/keveon/spring-data-jpa-demo?style=for-the-badge&logo=github" />
-          <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/keveon/spring-data-jpa-demo?style=for-the-badge&logo=github" />
-          <img alt="Java 21" src="https://img.shields.io/badge/Java-21-0ea5e9?style=for-the-badge&logo=openjdk&logoColor=white" />
-          <img alt="Spring Boot 3.5.13" src="https://img.shields.io/badge/Spring%20Boot-3.5.13-16a34a?style=for-the-badge&logo=springboot&logoColor=white" />
+        <div class="hero-summary">
+          <article class="summary-card">
+            <strong>2 个核心实体</strong>
+            <p>围绕 Dept 与 Employee 展示常见主数据建模、关联和分页查询。</p>
+          </article>
+          <article class="summary-card">
+            <strong>测试驱动文档</strong>
+            <p>REST Docs snippets 来自自动化测试，降低文档与接口实现漂移。</p>
+          </article>
         </div>
       </div>
-      <aside class="hero-panel">
-        <h3>这个项目适合谁？</h3>
+      <aside class="hero-note panel-card">
+        <h3>先看什么</h3>
         <ul>
-          <li>想快速理解 <strong>Spring Data JPA</strong> 的仓库抽象、分页、动态查询与 REST 暴露。</li>
-          <li>希望在一个最小但完整的项目里，同时看到 <strong>测试、文档、构建、部署</strong> 的串联方式。</li>
-          <li>打算把示例改造成自己的业务脚手架，直接继续扩展实体、仓库、校验与 API。</li>
+          <li>先进入 API Guide，快速了解资源结构、分页方式和错误响应。</li>
+          <li>再回到仓库，对照实体、仓库、测试和配置理解实现细节。</li>
+          <li>需要扩展时，可以直接复用现成的运行、迁移和测试链路。</li>
         </ul>
+        <div class="hero-spotlight">
+          <span class="spotlight-label">推荐路径</span>
+          <span class="spotlight-title">先看 API，再看测试，最后看源码</span>
+          <span class="spotlight-copy">这样更容易把接口行为、文档来源和实现结构串起来。</span>
+          <a class="spotlight-link" href="./api-guide.html">进入 API Guide →</a>
+        </div>
       </aside>
     </div>
   </section>
 
   <section class="metrics section">
     <article class="metric-card">
-      <span class="metric-value">2 个</span>
-      <div class="metric-label">核心演示实体：<strong>Dept</strong> 与 <strong>Employee</strong>，覆盖典型主数据建模场景。</div>
+      <span class="metric-value">资源导向</span>
+      <div class="metric-label">通过 <strong>Spring Data REST</strong> 暴露 HAL 资源，便于观察链接发现与导航方式。</div>
     </article>
     <article class="metric-card">
-      <span class="metric-value">REST Docs</span>
-      <div class="metric-label">测试驱动生成 API 文档，保证页面展示内容与接口行为同步。</div>
+      <span class="metric-value">动态查询</span>
+      <div class="metric-label">使用 <strong>JpaSpecificationExecutor</strong> 演示分页、排序和条件过滤的典型组合。</div>
     </article>
     <article class="metric-card">
-      <span class="metric-value">Pages</span>
-      <div class="metric-label">由 GitHub Actions 自动构建并发布，无需单独维护静态站点。</div>
+      <span class="metric-value">工程闭环</span>
+      <div class="metric-label">测试、文档、数据库迁移与本地运行链路完整，适合直接拿来做练习或模板。</div>
     </article>
     <article class="metric-card">
-      <span class="metric-value">开箱即跑</span>
-      <div class="metric-label">仓库内置 <code>mise.toml</code> 与 Maven Wrapper，拉下来即可开始。</div>
+      <span class="metric-value">统一入口</span>
+      <div class="metric-label">首页负责建立上下文，API Guide 负责承载细节，信息分层更清楚。</div>
     </article>
   </section>
 
   <section class="section">
-    <h2 class="section-title">为什么它更像一个项目官网，而不只是接口导出页？</h2>
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Overview</span>
+        <h2 class="section-title">这个示例适合怎么用</h2>
+      </div>
+    </div>
     <p class="section-intro">
-      首页直接回答三个问题：这个项目是什么、解决什么问题、我下一步该点哪里。
-      你不需要先理解 AsciiDoc 或 Spring REST Docs，也能快速进入阅读路径。
+      适合先快速浏览接口，再回到仓库理解测试、实体建模和文档生成方式。
+      无论是学习 Spring Data JPA，还是拿来做脚手架参考，都能直接上手。
     </p>
     <div class="features">
       <article class="feature-card">
-        <h3>中文友好的学习路径</h3>
-        <p>配套中文文章、仓库源码、在线 API 文档三者互相链接，适合边看边跑边改。</p>
+        <h3>先看接口全貌</h3>
+        <p>API Guide 提供资源入口、请求示例和分页结构，方便快速判断项目是否符合预期。</p>
       </article>
       <article class="feature-card">
-        <h3>覆盖常见工程能力</h3>
-        <p>示例不仅有 JPA，还串联了 Spring Data REST、参数校验、异常响应、Actuator、Flyway 与测试文档化。</p>
+        <h3>再看测试与文档</h3>
+        <p>REST Docs 片段来自自动化测试，便于理解接口说明和实现如何保持一致。</p>
       </article>
       <article class="feature-card">
-        <h3>可直接 fork 继续开发</h3>
-        <p>如果你想做一个自己的管理后台或基础后端模板，这个仓库已经准备好了依赖、结构和一条顺畅的构建链路。</p>
+        <h3>最后按需扩展</h3>
+        <p>项目已带好 Maven Wrapper、数据库迁移和本地运行链路，适合继续改造成自己的模板。</p>
       </article>
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section-title">你会在仓库里看到什么</h2>
-    <p class="section-intro">这些内容都已经在项目中真实存在，而不是只停留在 README 的口头描述。</p>
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Included</span>
+        <h2 class="section-title">项目里已经包含的能力</h2>
+      </div>
+    </div>
+    <p class="section-intro">这些内容都能在代码、测试或生成页面里找到对应实现，不只是停留在 README 的描述。</p>
     <div class="resources">
       <article class="resource-card">
-        <small>DATA ACCESS</small>
+        <small>Data access</small>
         <h3>Spring Data JPA 仓库层</h3>
-        <p>使用 <strong>JpaRepository</strong> 与 <strong>JpaSpecificationExecutor</strong> 演示基础 CRUD、分页、排序和动态条件查询。</p>
+        <p>通过 <strong>JpaRepository</strong> 与 <strong>JpaSpecificationExecutor</strong> 演示 CRUD、分页、排序和动态查询。</p>
       </article>
       <article class="resource-card">
-        <small>API STYLE</small>
+        <small>API style</small>
         <h3>Spring Data REST + HATEOAS</h3>
-        <p>接口以资源导向方式暴露，首页入口会返回可导航的链接，适合观察 HAL 结构与资源发现方式。</p>
+        <p>以资源导向方式暴露接口，适合观察 HAL 结构、链接发现和资源导航体验。</p>
       </article>
       <article class="resource-card">
-        <small>DOCS AS CODE</small>
+        <small>Docs as code</small>
         <h3>测试驱动文档生成</h3>
-        <p>接口说明由测试生成 snippets，再通过 AsciiDoctor 汇总成可浏览的在线文档，减少文档漂移。</p>
+        <p>接口说明来自测试片段，再由 AsciiDoctor 汇总成稳定、可浏览的在线文档页面。</p>
       </article>
       <article class="resource-card">
-        <small>RUNTIME</small>
+        <small>Runtime</small>
         <h3>H2 / Flyway / Actuator</h3>
-        <p>内置数据库迁移、运行时观测和本地演示环境，适合快速验证建模与接口行为。</p>
+        <p>内置数据库迁移、本地演示环境与运行时观测能力，便于快速验证模型和接口行为。</p>
       </article>
       <article class="resource-card">
-        <small>QUALITY</small>
+        <small>Quality</small>
         <h3>JaCoCo 覆盖率报告</h3>
-        <p>测试过程中会生成覆盖率报告，帮助你把示例项目继续演进成可维护的真实工程。</p>
+        <p>测试链路同时输出覆盖率结果，帮助示例继续演进成更可维护的真实工程。</p>
       </article>
       <article class="resource-card">
-        <small>DELIVERY</small>
-        <h3>GitHub Actions 自动发布</h3>
-        <p>每次推送到 <code>main</code> 都会重新构建站点，并将文档发布到 GitHub Pages。</p>
+        <small>Delivery</small>
+        <h3>持续化页面发布</h3>
+        <p>文档页面可以自动构建输出，适合作为项目官网、接口门户与演示入口的统一落点。</p>
       </article>
     </div>
   </section>
 
-  <section class="section">
-    <h2 class="section-title">3 分钟本地跑起来</h2>
-    <p class="section-intro">仓库当前维护基线为 <strong>Spring Boot 3.5.13</strong> 与 <strong>Java 21</strong>。</p>
-    <div class="quickstart hero-panel">
-      <p>推荐使用 <a href="https://mise.jdx.dev/">mise</a> 管理 Java 版本。下面这组命令足够完成安装、测试和本地启动：</p>
+  <section class="section" id="quickstart">
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Quick start</span>
+        <h2 class="section-title">3 分钟完成本地验证</h2>
+      </div>
+    </div>
+    <p class="section-intro">当前维护基线为 <strong>Spring Boot 3.5.13</strong> 与 <strong>Java 21</strong>。</p>
+    <div class="quickstart panel-card">
+      <p>下面这组命令足够完成环境准备、测试和本地启动：</p>
       <div class="terminal-block">
         <code>mise install
 ./mvnw test
 ./mvnw spring-boot:run</code>
       </div>
       <ol>
-        <li>访问仓库根目录后执行 <code>mise install</code>，即可拉起项目要求的 Java 21 环境。</li>
-        <li>运行 <code>./mvnw test</code>，会同时生成 REST Docs 片段与覆盖率报告。</li>
-        <li>运行 <code>./mvnw spring-boot:run</code>，即可在本地体验接口与页面文档。</li>
+        <li>执行 <code>mise install</code>，准备项目要求的 Java 21 环境。</li>
+        <li>执行 <code>./mvnw test</code>，生成 REST Docs snippets 与测试结果。</li>
+        <li>执行 <code>./mvnw spring-boot:run</code>，本地体验接口和文档页面。</li>
       </ol>
     </div>
   </section>
 
   <section class="section">
-    <h2 class="section-title">推荐阅读顺序</h2>
-    <p class="section-intro">如果你是第一次进来，按这个顺序最省时间。</p>
+    <div class="section-head">
+      <div>
+        <span class="section-kicker">Next</span>
+        <h2 class="section-title">推荐阅读顺序</h2>
+      </div>
+    </div>
+    <p class="section-intro">如果你是第一次进入这个项目，按下面顺序最省时间。</p>
     <div class="cta-grid">
       <article class="cta-card">
-        <h3>1. 先看项目定位</h3>
-        <p>从仓库 README 与本页开始，快速了解这个示例的边界、技术栈与维护基线。</p>
+        <h3>1. 建立项目上下文</h3>
+        <p>先从首页和仓库 README 了解项目边界、技术栈与维护基线。</p>
         <a class="resource-link" href="https://github.com/keveon/spring-data-jpa-demo#readme">打开 README →</a>
       </article>
       <article class="cta-card">
-        <h3>2. 再看 API 文档</h3>
-        <p>进入在线 API Guide，直接观察资源入口、请求示例、分页结构和错误响应格式。</p>
+        <h3>2. 进入 API Guide</h3>
+        <p>直接查看资源入口、请求示例、分页结构、错误响应与 REST Docs 生成效果。</p>
         <a class="resource-link" href="./api-guide.html">查看 API Guide →</a>
       </article>
       <article class="cta-card">
-        <h3>3. 最后回到源码</h3>
-        <p>对照仓库中的实体、仓库、测试和配置文件，你会更容易理解这些页面是怎样生成出来的。</p>
-        <a class="resource-link" href="https://github.com/keveon/spring-data-jpa-demo">浏览源码 →</a>
+        <h3>3. 对照源码扩展</h3>
+        <p>回到实体、仓库、测试与配置文件，对照页面理解整个生成链路与可扩展点。</p>
+        <a class="resource-link" href="https://github.com/keveon/spring-data-jpa-demo">浏览项目仓库 →</a>
       </article>
     </div>
   </section>
